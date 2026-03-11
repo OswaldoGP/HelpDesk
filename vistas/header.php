@@ -1,3 +1,8 @@
+<?php
+    session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,13 +26,17 @@
             <li class="nav-item active">
                 <a class="nav-link" href="inicio.php">inicio</a>
             </li>
+        <?php if($_SESSION['usuario']['rol'] == 1){  ?>
             <li class="nav-item">
                 <a class="nav-link" href="misDispositivos.php">Mis dispositivos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="misReportes.php">Reportes soportes</a>
             </li>
+        <?php } else if($_SESSION['usuario']['rol'] == 2) {  ?>
+
             <!-- vistas del admim (root) -->
+
             <li class="nav-item">
                 <a class="nav-link" href="usuarios.php">Usuarios</a>
             </li>
@@ -37,15 +46,16 @@
             <li class="nav-item">
                 <a class="nav-link" href="reportes.php">reportes</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+        <?php } ?>
+            <li class="nav-item dropdown" >
+                <a style="color:red" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Usuario
+                Usuario: <?php echo $_SESSION['usuario']['nombre']; ?>
                 </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Editar datos </a></li>
                 <li><hr class="dropdown-divider"></li>   
-                <li><a class="dropdown-item" href="#">Salir</a></li>
+                <li><a class="dropdown-item" href="../procesos/usuarios/login/salir.php">Salir</a></li>
             </ul>
             </li>
         </ul>
