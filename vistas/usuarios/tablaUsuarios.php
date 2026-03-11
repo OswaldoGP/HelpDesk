@@ -27,7 +27,7 @@
 ?>
 
 
-<table class="table table-sm">
+<table class="table table-sm" id="tablaUsuariosDataTable">
     <thead>
         <th>Apellido paterno</th>
         <th>Apellido materno</th>
@@ -83,3 +83,9 @@
     </tbody>
 
 </table>
+
+<script>
+    $(document).ready(function(){
+        $('#tablaUsuariosDataTable').DataTable();
+    });
+</script>
