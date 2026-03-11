@@ -10,7 +10,7 @@
         <h1 class="fw-light">Administrar Usuarios</h1>
         <p class="lead">
             <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUsuarios">
-            agregar usuario  
+                Agregar usuario  
             </button>
             <hr>
             <div id="tablaUsuariosLoad"></div>
