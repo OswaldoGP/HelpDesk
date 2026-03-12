@@ -18,3 +18,4 @@ include "../../../clases/Usuarios.php";
 $Usuarios = new Usuarios();
 echo $Usuarios->agregaNuevoUsuario($datos);
 
+echo "djksdjoho";
