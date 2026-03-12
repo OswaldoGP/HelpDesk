@@ -27,7 +27,7 @@
 ?>
 
 
-<table class="table table-sm" id="tablaUsuariosDataTable">
+<table class="table table-sm dt-responsive nowrap" id="tablaUsuariosDataTable" style="width:100%" >
     <thead>
         <th>Apellido paterno</th>
         <th>Apellido materno</th>
@@ -37,9 +37,10 @@
         <th>Telefono</th>
         <th>Correo</th>
         <th>Usuario</th>
+        <th>ubicacion</th>
         <th>Reset password</th>
         <th>Cambiar rol</th>
-        <th>ubicacion</th>
+        <th>Activar</th>
         <th>Editar</th>
         <th>Eliminar</th>
     </thead>
@@ -56,6 +57,7 @@
             <td><?php echo $mostrar['telefono']; ?></td>
             <td><?php echo $mostrar['correo']; ?></td>
             <td><?php echo $mostrar['nombreUsuario']; ?></td>
+            <td><?php echo $mostrar['ubicacion']; ?></td>
             <td>
                 <button class="btn btn-success btn-sm">
                     Cambiar password
@@ -66,7 +68,26 @@
                     Cambiar rol
                 </button>
             </td>
-            <td><?php echo $mostrar['ubicacion']; ?></td>
+            <td>
+                <?php 
+                    if($mostrar['estatus'] == 1) {
+                ?>
+
+
+                    <button class="btn btn-info btn-sm">
+                        Activo
+                    </button>
+
+                <?php 
+                    } else {
+                ?>
+                    <button class="btn btn-info btn-sm">
+                        inactivo
+                    </button>
+                <?php    
+                    }
+                ?>
+            </td>
             <td>
                 <button class="btn btn-warning btn-sm">
                     Editar
