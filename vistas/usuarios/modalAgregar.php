@@ -1,6 +1,6 @@
 
 <!-- Modal -->
-<form id="frmAgregarUsusario" method="POST" onsubmit="return agregarNuevoUsuario()">
+<form id="frmAgregarUsuario" method="POST" onsubmit="return agregarNuevoUsuario()">
     <div class="modal fade" id="modalAgregarUsuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">

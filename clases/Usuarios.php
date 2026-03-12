@@ -20,4 +20,56 @@
                 return 0;
             }
         }
+
+        public function agregaNuevoUsuario($datos){
+            $conexion = Conexion::conectar();
+            $idPersona = self::agregarPersona($datos);
+
+            if ($idPersona > 0) {
+                $sql = "INSERT INTO t_usuarios (id_rol, 
+                                                id_persona, 
+                                                usuario, 
+                                                password, 
+                                                ubicacion)
+                        VALUES (?, ?, ?, ?, ?)";
+                $query = $conexion->prepare($sql);
+                $query->bind_param("iisss", $datos['idRol'],
+                                            $idPersona,
+                                            $datos['usuario'],
+                                            $datos['password'],
+                                            $datos['ubicacion']);
+                $respuesta = $query->execute();
+                return $respuesta;
+            } else {
+                return 0;
+            }
+            
+            
+        }
+
+        public function agregarPersona($datos){
+            $conexion = Conexion::conectar();
+            $sql = "INSERT INTO t_persona (paterno,
+                                            materno,
+                                            nombre,
+                                            fecha_nacimiento,
+                                            sexo,
+                                            telefono,
+                                            correo)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $query = $conexion->prepare($sql);
+            $query->bind_param("sssssss", $datos['paterno'],
+                                        $datos['materno'],
+                                        $datos['nombre'],
+                                        $datos['fechaNacimiento'],
+                                        $datos['sexo'],
+                                        $datos['telefono'],
+                                        $datos['correo']);
+            $respuesta = $query->execute();
+            $idPersona = mysqli_insert_id($conexion);
+            $query->close();
+            return $idPersona;
+        }
     }
+
+
