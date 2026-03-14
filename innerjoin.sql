@@ -44,3 +44,11 @@ CREATE TABLE `t_cat_equipo` (
     `nombre` VARCHAR(245) NOT NULL,
     `descripcion` VARCHAR(245) NULL,
     PRIMARY KEY (`id_equipo`));
+
+
+--- persona y id
+SELECT 
+	id_persona,
+    CONCAT(paterno, ' ', materno, ' ', nombre) AS nombre
+FROM
+    t_persona;

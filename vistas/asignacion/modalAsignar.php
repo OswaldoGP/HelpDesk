@@ -1,6 +1,8 @@
 
 
 <!-- Modal -->
+<form id="frmAsignaEquipo" method="POST" onsubmit="return asignarEquipo()">
+
 <div class="modal fade" id="modalAsignarEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -12,14 +14,36 @@
         <div class="row">
             <div class="col-sm-6">
               <label>Nombre de persona</label>
+
+              <?php 
+                  $sql = "SELECT 
+                              id_persona,
+                              CONCAT(paterno, ' ', materno, ' ', nombre) AS nombre
+                          FROM
+                              t_persona ORDER BY paterno";
+                  $respuesta = mysqli_query($conexion, $sql);
+              ?>
+
               <select name="idPersona" id="idPersona" class="form-control" required >
-                <option value=""></option>
+                <option value="">Selecciona una opcion</option>
+                <?php while($mostrar = mysqli_fetch_array($respuesta)) {  ?>
+                    <option value="<?php echo $mostrar['id_persona']; ?>"> <?php echo $mostrar['nombre']; ?> </option>
+                <?php } ?>
               </select>
             </div>
             <div class="col-sm-6">
               <label>Tipo de equipo</label>
+
+              <?php
+                  $sql = "SELECT id_equipo, nombre FROM t_cat_equipo ORDER BY nombre";
+                  $respuesta = mysqli_query($conexion, $sql);
+              ?>
+
               <select name="idEquipo" id="idEquipo" class="form-control" required >
-                <option value=""></option>
+                <option value="">Selecciona una opcion</option>
+                <?php while($mostrar = mysqli_fetch_array($respuesta)) {  ?>
+                    <option value="<?php echo $mostrar['id_equipo']; ?>"> <?php echo $mostrar['nombre']; ?> </option>
+                <?php } ?>
               </select>
             </div>
         </div>
@@ -58,9 +82,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Asignar</button>
       </div>
     </div>
   </div>
 </div>
+
+</form>
