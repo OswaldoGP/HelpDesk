@@ -119,6 +119,69 @@
             return $datos;
         }
 
+        public function actualizarUsuario($datos){
+            $conexion = Conexion::conectar();
+            $exitoPersona = self::actualizarPersona($datos);
+
+            if ($exitoPersona) {
+                $sql = "UPDATE t_usuarios SET id_rol = ?,
+                                                usuario = ?,
+                                                ubicacion = ? 
+                        WHERE id_usuario = ?";
+                $query = $conexion->prepare($sql);
+                $query->bind_param('issi', $datos['idRol'],
+                                            $datos['usuario'],
+                                            $datos['ubicacion'],
+                                            $datos['idUsuario']);
+                $respuesta = $query->execute();
+                $query->close();
+                return $respuesta;
+            }else{
+                return 0;   
+            }
+        }
+
+        public function actualizarPersona($datos){
+            $conexion = Conexion::conectar();
+            $idPersona = self::obtenerIdPersona($datos['idUsuario']);
+
+            $sql = "UPDATE t_persona SET paterno = ?,
+                                        materno = ?,
+                                        nombre = ?,
+                                        fecha_nacimiento = ?,
+                                        sexo = ?,
+                                        telefono = ?,
+                                        correo = ? 
+                    WHERE id_persona = ?";
+            $query = $conexion->prepare($sql);
+            $query->bind_param('sssssssi', $datos['paterno'],
+                                            $datos['materno'],
+                                            $datos['nombre'],
+                                            $datos['fechaNacimiento'],
+                                            $datos['sexo'],
+                                            $datos['telefono'],
+                                            $datos['correo'],
+                                            $idPersona);
+            $respuesta = $query->execute();
+            $query->close();
+            return $respuesta;
+        }
+
+        public function obtenerIdPersona($idUsuario){
+            $conexion = Conexion::conectar();
+            $sql = "SELECT 
+                        persona.id_persona AS idPersona
+                    FROM
+                        t_usuarios AS usuarios
+                            INNER JOIN
+                        t_persona AS persona ON usuarios.id_persona = persona.id_persona
+                            AND usuarios.id_usuario = '$idUsuario' ";
+            $respuesta = mysqli_query($conexion, $sql);
+
+            $idPersona = mysqli_fetch_array($respuesta)['idPersona'];
+
+            return $idPersona;
+        }
     }
 
 

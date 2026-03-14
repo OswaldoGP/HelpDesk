@@ -9,7 +9,7 @@
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" id="isUsuario" name="isUsuario" hidden>
+                    <input type="text" id="idUsuario" name="idUsuario" hidden>
 
                     <div class="row">
                         <div class="col-sm-4">
@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button  class="btn btn-warning">Actualizar</button>
+                    <button  type="submit" class="btn btn-warning">Actualizar</button>
                 </div>
             </div>
         </div>
