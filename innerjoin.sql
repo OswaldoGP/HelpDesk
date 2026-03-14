@@ -1,3 +1,6 @@
+-- inner joins
+
+
 SELECT 
     usuarios.id_usuario AS idUsuario,
     usuarios.usuario AS nombreUsuario,
@@ -20,3 +23,24 @@ FROM
         INNER JOIN
     t_persona AS persona ON usuarios.id_persona = persona.id_persona
         AND usuarios.id_usuario = 3;
+
+
+
+
+
+
+-- sacar id de persona
+SELECT 
+    persona.id_persona AS idPersona
+FROM
+    t_usuarios AS usuarios
+        INNER JOIN
+    t_persona AS persona ON usuarios.id_persona = persona.id_persona
+        AND usuarios.id_usuario = 1;
+
+--  tabla catalogo
+CREATE TABLE `t_cat_equipo` (
+    `id_equipo` INT NOT NULL AUTO_INCREMENT,
+    `nombre` VARCHAR(245) NOT NULL,
+    `descripcion` VARCHAR(245) NULL,
+    PRIMARY KEY (`id_equipo`));
