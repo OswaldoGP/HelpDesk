@@ -1,5 +1,5 @@
 <?php 
-    
+
 $datos = array(
    "paterno" => $_POST['paterno'],
    "materno" => $_POST['materno'], 
@@ -18,4 +18,3 @@ include "../../../clases/Usuarios.php";
 $Usuarios = new Usuarios();
 echo $Usuarios->agregaNuevoUsuario($datos);
 
-echo "djksdjoho";
