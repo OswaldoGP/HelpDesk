@@ -9,6 +9,7 @@
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <input type="text" id="isUsuario" name="isUsuario" hidden>
 
                     <div class="row">
                         <div class="col-sm-4">
