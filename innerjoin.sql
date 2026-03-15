@@ -131,3 +131,47 @@ FROM
     INNER JOIN
     t_cat_equipo AS equipo ON asignacion.id_equipo = equipo.id_equipo;
 	
+
+
+
+
+--- tabla nueva de reportes 
+
+CREATE TABLE `helpdesk`.`t_reportes` (
+  `id_reporte` INT NOT NULL AUTO_INCREMENT,
+  `id_usuario` INT NULL,
+  `id_equipo` INT NULL,
+  `descripcion` TEXT NULL,
+  PRIMARY KEY (`id_reporte`),
+  INDEX `fkUsuarioReporte_idx` (`id_usuario` ASC) VISIBLE,
+  INDEX `fkEquipoReporte_idx` (`id_equipo` ASC) VISIBLE,
+  CONSTRAINT `fkUsuarioReporte`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `helpdesk`.`t_usuarios` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fkEquipoReporte`
+    FOREIGN KEY (`id_equipo`)
+    REFERENCES `helpdesk`.`t_cat_equipo` (`id_equipo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+-- mas campos de reportes, estado, id del quien solocuino etc
+ALTER TABLE `helpdesk`.`t_reportes` 
+DROP FOREIGN KEY `fkEquipoReporte`,
+DROP FOREIGN KEY `fkUsuarioReporte`;
+ALTER TABLE `helpdesk`.`t_reportes` 
+ADD COLUMN `id_usuario_tecnico` INT NULL AFTER `id_equipo`,
+ADD COLUMN `solucion_problema` TEXT NULL AFTER `descripcion_problema`,
+ADD COLUMN `estatus` INT NOT NULL AFTER `solucion_problema`,
+CHANGE COLUMN `id_usuario` `id_usuario` INT NOT NULL COMMENT '	' ,
+CHANGE COLUMN `id_equipo` `id_equipo` INT NOT NULL ,
+CHANGE COLUMN `descripcion` `descripcion_problema` TEXT NOT NULL ;
+ALTER TABLE `helpdesk`.`t_reportes` 
+ADD CONSTRAINT `fkEquipoReporte`
+  FOREIGN KEY (`id_equipo`)
+  REFERENCES `helpdesk`.`t_cat_equipo` (`id_equipo`),
+ADD CONSTRAINT `fkUsuarioReporte`
+  FOREIGN KEY (`id_usuario`)
+  REFERENCES `helpdesk`.`t_usuarios` (`id_usuario`);
