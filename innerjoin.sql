@@ -175,3 +175,21 @@ ADD CONSTRAINT `fkEquipoReporte`
 ADD CONSTRAINT `fkUsuarioReporte`
   FOREIGN KEY (`id_usuario`)
   REFERENCES `helpdesk`.`t_usuarios` (`id_usuario`);
+
+
+-- productos de una persona
+SELECT 
+    asignacion.id_asignacion,
+    equipo.id_equipo,
+    equipo.nombre
+FROM
+    t_asignacion AS asignacion
+        INNER JOIN
+    t_cat_equipo AS equipo ON asignacion.id_equipo = equipo.id_equipo
+WHERE
+	asignacion.id_persona = (SELECT
+								id_persona
+							FROM
+								t_usuarios
+							WHERE
+								id_usuario = 1);
