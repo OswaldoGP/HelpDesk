@@ -32,8 +32,8 @@
     $respuesta = mysqli_query($conexion, $sql);
 ?>
 
-<table class="table table-sm dt-responsive nowrap" 
-        style="width:100%" id="tablaAsignacionDataTable" id="tablaReportesClienteDataTable" >
+<table class="table table-sm table-bordered dt-responsive nowrap" 
+        style="width:100%" id="tablaAsignacionDataTable">
     <thead>
         <th>#</th>
         <th>Persona</th>
@@ -48,28 +48,26 @@
     <tbody>
     <?php while($mostrar = mysqli_fetch_array($respuesta)) { ?>
         <tr>
-            <td> <?php echo $contador++; ?> </td>
-            <td><?php $mostrar['nombrePersona'] ?></td>
-            <td><?php $mostrar['nombreEquipo'] ?></td>
-            <td><?php $mostrar['fecha'] ?></td>
-            <td><?php $mostrar['problema'] ?>/td>
+            <td><?php echo $contador++; ?> </td>
+            <td><?php echo $mostrar['nombrePersona']; ?></td>
+            <td><?php echo $mostrar['nombreEquipo']; ?></td>
+            <td><?php echo $mostrar['fecha']; ?></td>
+            <td><?php echo $mostrar['problema']; ?></td>
             <td>
                 <?php
                     $estatus = $mostrar['estatus'];
-                    $cadenaEstatus = '<div class="alert alert-danger" role="alert">
-                                            Abierto
-                                    </div>';
+                    $cadenaEstatus = '<span class="badge badge-success"> Abierto </span>';
                     if ($estatus == 0) {
-                        $cadenaEstatus = '<div class="alert alert-success" role="alert">
-                                                Cerrado
-                                        </div>';
+                        $cadenaEstatus = '<span class="badge badge-success"> Cerrado </span>';
                     }
                     echo $cadenaEstatus;
                 ?>
             </td>
-            <td><?php $mostrar['solucion'] ?>/td>
+            <td><?php echo $mostrar['solucion']; ?></td>
             <td>
-                <button class="btn btn-danger btn-sm"></button>
+                <button class="btn btn-danger btn-sm">
+                    Eliminar 
+                </button>
             </td>
         </tr>
     <?php } ?>
@@ -80,4 +78,4 @@
     $(document).ready(function(){
         $('#tablaReportesClienteDataTable').DataTable();
     });
-</script>Abierto
+</script>

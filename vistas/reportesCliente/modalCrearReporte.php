@@ -34,7 +34,7 @@
                     <select name="idEquipo" id="idEquipo" class="form-control" required>
                         <option value="">Selecciona un dispositivo</option>
                         <?php while($mostrar = mysqli_fetch_array($respuesta)) {  ?>
-                            <option value="<?php $mostrar['idEquipo'] ?>"> <?php echo $mostrar['nombreEquipo']; ?></option>
+                            <option value="<?php echo $mostrar['idEquipo']; ?>"> <?php echo $mostrar['nombreEquipo']; ?></option>
                         <?php } ?>
                     </select>
                     <label for="problema">Describe tu problema</label>
