@@ -56,7 +56,8 @@
             <td><?php echo $mostrar['discoDuro'] ?></td>
             <td><?php echo $mostrar['procesador'] ?></td>
             <td>
-                <button class="btn btn-danger btn-sm" >
+                <button class="btn btn-danger btn-sm" 
+                onclick="eliminarAsignacion(<?php echo $mostrar['idAsignacion'] ?>)">
                     Eliminar
                 </button>
             </td>
