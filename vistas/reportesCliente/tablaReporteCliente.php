@@ -33,7 +33,7 @@
 ?>
 
 <table class="table table-sm table-bordered dt-responsive nowrap" 
-        style="width:100%" id="tablaAsignacionDataTable">
+        style="width:100%" id="tablaReportesClienteDataTable">
     <thead>
         <th>#</th>
         <th>Persona</th>
