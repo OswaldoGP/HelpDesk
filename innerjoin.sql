@@ -52,3 +52,51 @@ SELECT
     CONCAT(paterno, ' ', materno, ' ', nombre) AS nombre
 FROM
     t_persona;
+
+
+-- clientes
+SELECT 
+    persona.id_persona,
+    CONCAT(persona.paterno,
+            ' ',
+            persona.materno,
+            ' ',
+            persona.nombre) AS nombrePersona
+FROM
+    t_persona AS persona
+        INNER JOIN
+    t_usuarios AS usuario ON persona.id_persona = usuario.id_persona
+        AND usuario.id_rol = 1
+ORDER BY persona.paterno
+
+
+-- tabla de asignacion 
+CREATE TABLE `t_asignacion` (
+  `id_asignacion` INT NOT NULL,
+  `id_persona` INT NOT NULL,
+  `id_equipo` INT NOT NULL,
+  `marca` VARCHAR(245) NULL,
+  `modelo` VARCHAR(245) NULL,
+  `color` VARCHAR(245) NULL,
+  `descripcion` VARCHAR(245) NULL,
+  `memoria` VARCHAR(245) NULL,
+  `disco_duro` VARCHAR(245) NULL,
+  `procesador` VARCHAR(245) NULL,
+  PRIMARY KEY (`id_asignacion`));
+
+
+  ALTER TABLE `helpdesk`.`t_asignacion` 
+ADD INDEX `fkPersona_idx` (`id_persona` ASC) VISIBLE,
+ADD INDEX `fkequipoAsignacion_idx` (`id_equipo` ASC) VISIBLE;
+;
+ALTER TABLE `helpdesk`.`t_asignacion` 
+ADD CONSTRAINT `fkPersonaAsignacion`
+  FOREIGN KEY (`id_persona`)
+  REFERENCES `helpdesk`.`t_persona` (`id_persona`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `fkequipoAsignacion`
+  FOREIGN KEY (`id_equipo`)
+  REFERENCES `helpdesk`.`t_cat_equipo` (`id_equipo`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
