@@ -52,16 +52,25 @@
         <?php } ?>
             <li class="nav-item dropdown" >
                 <a style="color:red" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
-                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Usuario: <?php echo $_SESSION['usuario']['nombre']; ?>
                 </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Editar datos </a></li>
-                <li><hr class="dropdown-divider"></li>   
-                <li><a class="dropdown-item" href="../procesos/usuarios/login/salir.php">Salir</a></li>
-            </ul>
+                <div class="dropdown-menu" aria-labelledby="nabvarDropdown">
+                <a class="dropdown-item" href="#" 
+                data-toggle="modal" 
+                data-target="#modalActualizarDatosPersonales"
+                onclick="obtenerDatosPersonalesInicio('<?php echo $_SESSION['usuario']['id']; ?>')">
+                        Editar datos 
+                </a>
+                <div class="dropdown-divider"></div>  
+                <a class="dropdown-item" href="../procesos/usuarios/login/salir.php">Salir</a>
+            
             </li>
         </ul>
         </div>
     </div>
 </nav>
+
+    <?php 
+        include "inicio/modalActualizarDatosPersonales.php";
+    ?>
