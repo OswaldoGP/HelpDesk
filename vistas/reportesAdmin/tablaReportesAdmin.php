@@ -62,7 +62,13 @@
                     echo $cadenaEstatus;
                 ?>
             </td>
-            <td><?php echo $mostrar['solucion']; ?></td>
+            <td>
+                <button class="btn btn-info btn-sm" 
+                        onclick="obtenerDatosSolucion('<?php echo $mostrar['idReporte']; ?>')"
+                        data-toggle="modal" data-target="#modalAgregarSolucionReporte">
+                    Solucion
+                </button>
+                <?php echo $mostrar['solucion']; ?></td>
             <td>
                 <?php 
                     if ($mostrar['solucion'] == "") {
