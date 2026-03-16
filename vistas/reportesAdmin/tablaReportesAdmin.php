@@ -27,7 +27,8 @@
                     INNER JOIN
                 t_persona AS persona ON usuario.id_persona = persona.id_persona
                     INNER JOIN
-                t_cat_equipo AS equipo ON reporte.id_equipo = equipo.id_equipo";
+                t_cat_equipo AS equipo ON reporte.id_equipo = equipo.id_equipo
+                ORDER BY reporte.fecha DESC";
     $respuesta = mysqli_query($conexion, $sql);
 ?>
 
@@ -55,7 +56,7 @@
             <td>
                 <?php
                     $estatus = $mostrar['estatus'];
-                    $cadenaEstatus = '<span class="badge badge-success"> Abierto </span>';
+                    $cadenaEstatus = '<span class="badge badge-danger"> Abierto </span>';
                     if ($estatus == 0) {
                         $cadenaEstatus = '<span class="badge badge-success"> Cerrado </span>';
                     }

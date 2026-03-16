@@ -56,7 +56,7 @@
             <td>
                 <?php
                     $estatus = $mostrar['estatus'];
-                    $cadenaEstatus = '<span class="badge badge-success"> Abierto </span>';
+                    $cadenaEstatus = '<span class="badge badge-danger"> Abierto </span>';
                     if ($estatus == 0) {
                         $cadenaEstatus = '<span class="badge badge-success"> Cerrado </span>';
                     }
