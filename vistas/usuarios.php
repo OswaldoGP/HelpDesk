@@ -1,3 +1,4 @@
+
 <?php 
     include "header.php"; 
     if (isset($_SESSION['usuario']) && $_SESSION['usuario']['rol'] == 2) {
@@ -22,9 +23,11 @@
 <?php 
     include "usuarios/modalAgregar.php";
     include "usuarios/modalActualizar.php";
+    include "usuarios/modalResetPassword.php";
     include "footer.php"; 
 ?>
     <script src="../public/js/usuarios/usuarios.js"></script>
+    
 <?php
     } else {
         header("location:../index.html");

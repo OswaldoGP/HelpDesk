@@ -177,11 +177,25 @@
                         t_persona AS persona ON usuarios.id_persona = persona.id_persona
                             AND usuarios.id_usuario = '$idUsuario' ";
             $respuesta = mysqli_query($conexion, $sql);
-
             $idPersona = mysqli_fetch_array($respuesta)['idPersona'];
-
             return $idPersona;
         }
+
+        public function resetPassword($datos) {
+            $conexion = Conexion::conectar();
+            $sql = "UPDATE t_usuarios 
+                    SET password = ? 
+                    WHERE id_usuario = ?";
+            $query = $conexion->prepare($sql);
+            $query->bind_param('si', $datos['password'],
+                                    $datos['idUsuario']);
+            $respuesta = $query->execute();
+            $query->close();
+
+            return $respuesta;
+
+        }
+
     }
 
 

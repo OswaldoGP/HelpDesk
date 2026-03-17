@@ -42,7 +42,6 @@
         <th>Activar</th>
         <th>Editar</th>
         <th>Eliminar</th>
-        th
     </thead>
     <tbody>
         <?php 
@@ -59,8 +58,12 @@
             <td><?php echo $mostrar['ubicacion']; ?></td>
             <td><?php echo $mostrar['sexo']; ?></td>
             <td>
-                <button class="btn btn-success btn-sm">
-                    Cambiar password
+                <button class="btn btn-success btn-sm"
+                        data-toggle="modal" 
+                        data-target="#modalResetPassword"
+                        onclick="agregarIdUsuarioReset(<?php echo $mostrar['idUsuario'] ?>)">
+                        
+                    <span class="fas fa-exchange-alt"></span>
                 </button>
             </td>
         
