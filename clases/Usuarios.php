@@ -224,6 +224,48 @@
             $query->close();
             return $respuesta;
         }
+
+        public function buscarReportesUsuario($idUSuario){
+            $conexion = Conexion::conectar();
+            $sql = "SELECT * FROM t_reportes WHERE id_usuario = '$idUSuario'";
+            $respuesta = mysqli_query($conexion, $sql);
+            if (mysqli_num_rows($respuesta) > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+        public function buscarAsignacionPersona($idPersona){
+            $conexion = Conexion::conectar();
+            $sql = "SELECT * FROM t_asignacion WHERE id_persona = '$idPersona'";
+            $respuesta = mysqli_query($conexion, $sql);
+            if (mysqli_num_rows($respuesta) > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+        public function eliminarUsuario($datos){ 
+            $conexion = Conexion::conectar();
+
+            $reportes = self::buscarReportesUsuario($datos['idUsuario']);
+            $asignaciones = self::buscarAsignacionPersona($datos['idPersona']);
+
+
+            if ($reportes == 0 && $asignaciones == 0) {
+                // elimina un usuario
+                $sql = "DELETE FROM t_usuarios WHERE id_usuario = ?";
+                $query = $conexion->prepare($sql);
+                $query->bind_param('i', $datos['idUsuario']);
+                $respuesta = $query->execute();
+                $query->close();
+                return $respuesta;
+            } else {
+                return 0;
+            }
+        }
     }
 
 

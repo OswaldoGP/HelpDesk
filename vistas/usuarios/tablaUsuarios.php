@@ -99,11 +99,17 @@
                 </button>
             </td>
             <td>
-                <button class="btn btn-danger btn-sm">
-                    Eliminar
-                </button>
+                    <button class="btn btn-danger btn-sm" 
+                    onclick="eliminarUsuario(<?php echo $mostrar['idUsuario']; ?>, <?php echo $mostrar['idPersona']; ?>)">
+                            <span class="fas fa-user-times"></span>
+                    </button>
+
+                <form id="<?php echo "frmEliminarUsuario".$mostrar['idUsuario']; ?>" method="POST" onsubmit="return  ">
+                    <input type="text" name="idUsuarioEliminar" hidden value="">
+                    <input type="text" name="idPersonaEliminar" hidden value="">
+                    
+                </form> 
             </td>
-            
         </tr>
         <?php  } ?>
     </tbody>
