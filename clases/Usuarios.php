@@ -8,12 +8,21 @@
                     WHERE usuario = '$usuario' AND password = '$password' ";
             $respuesta = mysqli_query($conexion, $sql);
 
-            if (mysqli_num_rows($respuesta) > 0) {
+            
+
+            if (mysqli_num_rows($respuesta) > 0 ) {
                 $datosUsuario = mysqli_fetch_array($respuesta);
-                $_SESSION['usuario']['nombre'] = $datosUsuario['usuario'];
-                $_SESSION['usuario']['id'] = $datosUsuario['id_usuario'];  
-                $_SESSION['usuario']['rol'] = $datosUsuario['id_rol'];
-                return 1;
+
+                if ($datosUsuario['activo'] == 1) {
+                    # code...
+                    $_SESSION['usuario']['nombre'] = $datosUsuario['usuario'];
+                    $_SESSION['usuario']['id'] = $datosUsuario['id_usuario'];  
+                    $_SESSION['usuario']['rol'] = $datosUsuario['id_rol'];
+                    return 1;
+                } else {
+                    return 0;
+                }
+
 
                 # code...
             }else{
@@ -196,6 +205,25 @@
 
         }
 
+
+        public function cambioEstatusUsuario($idUsuario, $estatus) {
+            $conexion = Conexion::conectar();
+
+            if ($estatus == 1) {
+                $estatus = 0;
+            } else {
+                $estatus = 1;
+            }
+
+            $sql = "UPDATE t_usuarios 
+                    SET activo = ? 
+                    WHERE id_usuario = ?";
+            $query = $conexion->prepare($sql);
+            $query->bind_param('ii', $estatus, $idUsuario);
+            $respuesta = $query->execute();
+            $query->close();
+            return $respuesta;
+        }
     }
 
 

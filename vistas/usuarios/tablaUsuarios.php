@@ -58,12 +58,12 @@
             <td><?php echo $mostrar['ubicacion']; ?></td>
             <td><?php echo $mostrar['sexo']; ?></td>
             <td>
-                <button class="btn btn-success btn-sm"
+                <button class="btn btn-info btn-sm"
                         data-toggle="modal" 
                         data-target="#modalResetPassword"
-                        onclick="agregarIdUsuarioReset(<?php echo $mostrar['idUsuario'] ?>)">
+                        onclick="agregarIdUsuarioReset(<?php echo $mostrar['idUsuario']; ?>)">
                         
-                    <span class="fas fa-exchange-alt"></span>
+                    <span class="fas fa-exchange-alt">Cambiar contraseña</span>
                 </button>
             </td>
         
@@ -73,15 +73,18 @@
                 ?>
 
 
-                    <button class="btn btn-info btn-sm">
-                        Activo
+                    <button class="btn btn-secondar btn-sm" 
+                    onclick="cambioEstatusUsuario(<?php echo $mostrar['idUsuario']; ?>, <?php echo $mostrar['estatus']; ?>)">
+                    <span class="fas fa-power-off"></span> Off
                     </button>
+                
 
                 <?php 
-                    } else {
+                    } else if($mostrar['estatus'] == 0) {
                 ?>
-                    <button class="btn btn-info btn-sm">
-                        inactivo
+                    <button class="btn btn-success btn-sm" 
+                    onclick="cambioEstatusUsuario(<?php echo $mostrar['idUsuario']; ?>, <?php echo $mostrar['estatus']; ?>)">
+                        <span class="fas fa-power-off"></span> On
                     </button>
                 <?php    
                     }
