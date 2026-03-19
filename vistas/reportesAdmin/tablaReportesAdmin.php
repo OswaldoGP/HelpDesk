@@ -67,7 +67,7 @@
                 <button class="btn btn-info btn-sm" 
                         onclick="obtenerDatosSolucion('<?php echo $mostrar['idReporte']; ?>')"
                         data-toggle="modal" data-target="#modalAgregarSolucionReporte">
-                    Solucion
+                    <span class="fas fa-toolbox"></span>
                 </button>
                 <?php echo $mostrar['solucion']; ?></td>
             <td>

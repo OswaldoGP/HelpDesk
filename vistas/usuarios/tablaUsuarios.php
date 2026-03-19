@@ -63,7 +63,7 @@
                         data-target="#modalResetPassword"
                         onclick="agregarIdUsuarioReset(<?php echo $mostrar['idUsuario']; ?>)">
                         
-                    <span class="fas fa-exchange-alt">Cambiar contraseña</span>
+                    <span class="fas fa-exchange-alt"></span>
                 </button>
             </td>
         
@@ -95,7 +95,7 @@
                         data-toggle="modal" 
                         data-target="#modalActualizarUsuarios"
                         onclick="obtenerDatosUsuario(<?php echo $mostrar['idUsuario']; ?>)">
-                    Editar
+                            <span class="fas fa-edit"></span>
                 </button>
             </td>
             <td>
